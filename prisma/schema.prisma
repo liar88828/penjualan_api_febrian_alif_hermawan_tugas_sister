@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("mysql://root:@localhost:3306/penjualan_barang")
+}
+
+model Supplier {
+  id_supplier   Int      @id @default(autoincrement())
+  nama_supplier String   @unique
+  no_telp       String   @unique
+  alamat        String   @db.Text
+  id_barang     Barang[]
+}
+
+model Barang {
+  id_barang    Int         @id @default(autoincrement())
+  nama_barang  String
+  harga        Int
+  stok         Int
+  id_transaksi Transaksi[]
+
+  Supplier    Supplier? @relation(fields: [id_supplier], references: [id_supplier])
+  id_supplier Int?
+}
+
+model Transaksi {
+  id_transaksi  Int         @id @default(autoincrement())
+  tgl_transaksi DateTime
+  keterangan    String      @db.Text
+  Pembayaran    Pembayaran? @relation(fields: [id_pembayaran], references: [id_pembayaran])
+  id_pembayaran Int?
+  Pembeli       Pembeli?    @relation(fields: [id_pembeli], references: [id_pembeli])
+  id_pembeli    Int?
+  Barang        Barang?     @relation(fields: [id_barang], references: [id_barang])
+  id_barang     Int?
+}
+
+model Pembeli {
+  id_pembeli   Int         @id @default(autoincrement())
+  nama_pembeli String
+  no_hp        String
+  alamat       String      @db.Text
+  id_transaksi Transaksi[]
+}
+
+model Pembayaran {
+  id_pembayaran Int         @id @default(autoincrement())
+  tgl_bayar     DateTime
+  total_bayar   Int
+  id_transaksi  Transaksi[]
+}
