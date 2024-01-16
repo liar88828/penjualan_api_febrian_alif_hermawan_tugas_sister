@@ -1,4 +1,6 @@
+// @ts-ignore
 import Express from "express";
+// @ts-ignore
 import cors from 'cors'
 import { errorMiddleware } from "./middleware/error";
 import publicApi from './router/publicApi'

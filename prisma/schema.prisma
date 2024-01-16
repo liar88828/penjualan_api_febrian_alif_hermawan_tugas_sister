@@ -7,51 +7,33 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("mysql://root:@localhost:3306/penjualan_barang")
-}
-
-model Supplier {
-  id_supplier   Int      @id @default(autoincrement())
-  nama_supplier String   @unique
-  no_telp       String   @unique
-  alamat        String   @db.Text
-  id_barang     Barang[]
+  url      = "mysql://root:@localhost:3306/penjualan_toko"
 }
 
 model Barang {
-  id_barang    Int         @id @default(autoincrement())
-  nama_barang  String
-  harga        Int
-  stok         Int
-  id_transaksi Transaksi[]
-
-  Supplier    Supplier? @relation(fields: [id_supplier], references: [id_supplier])
-  id_supplier Int?
+  id_barang             Int        @id @default(autoincrement())
+  nama_barang           String
+  merek                 String
+  harga                 Int
+  Transaksi             Transaksi? @relation(fields: [transaksiId_transaksi], references: [id_transaksi])
+  transaksiId_transaksi Int?
 }
 
 model Transaksi {
-  id_transaksi  Int         @id @default(autoincrement())
-  tgl_transaksi DateTime
-  keterangan    String      @db.Text
-  Pembayaran    Pembayaran? @relation(fields: [id_pembayaran], references: [id_pembayaran])
-  id_pembayaran Int?
-  Pembeli       Pembeli?    @relation(fields: [id_pembeli], references: [id_pembeli])
-  id_pembeli    Int?
-  Barang        Barang?     @relation(fields: [id_barang], references: [id_barang])
-  id_barang     Int?
+  id_transaksi   Int      @id @default(autoincrement())
+  nama_pembeli   String
+  alamat_pembeli String   @db.Text
+  no_hp_pembeli  String
+  total_bayar    Int
+  tgl_bayar      DateTime
+  id_barang      Barang[]
+  Toko           Toko?    @relation(fields: [tokoId_toko], references: [id_toko])
+  tokoId_toko    Int?
 }
 
-model Pembeli {
-  id_pembeli   Int         @id @default(autoincrement())
-  nama_pembeli String
-  no_hp        String
-  alamat       String      @db.Text
+model Toko {
+  id_toko      Int         @id @default(autoincrement())
+  nama_toko    String
+  tahun        Int
   id_transaksi Transaksi[]
-}
-
-model Pembayaran {
-  id_pembayaran Int         @id @default(autoincrement())
-  tgl_bayar     DateTime
-  total_bayar   Int
-  id_transaksi  Transaksi[]
 }

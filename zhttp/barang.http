@@ -1,0 +1,28 @@
+### Mengambil data semua data barang
+GET http://localhost:3000/api/barang
+
+### Mengambil data barang berdasarkan id
+GET http://localhost:3000/api/barang/1
+
+### Membuat data barang
+POST http://localhost:3000/api/barang
+Content-Type: application/json
+
+{
+  "nama_barang": "sepatu",
+  "harga": 200000,
+  "merek": "adidas"
+}
+
+### Mengubah data barang berdasarkan id
+ PUT http://localhost:3000/api/barang/1
+Content-Type: application/json
+
+{
+  "nama_barang": "sepatu update",
+  "harga": 300000,
+  "merek": "adidas update"
+}
+
+### Menghapus data barang berdasarkan id
+ DELETE http://localhost:3000/api/barang/1

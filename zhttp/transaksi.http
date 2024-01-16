@@ -1,0 +1,31 @@
+### Mengambil data semua data transaksi
+GET http://localhost:3000/api/transaksi
+
+### Mengambil data transaksi berdasarkan id
+GET http://localhost:3000/api/transaksi/1
+
+### Membuat data transaksi
+POST http://localhost:3000/api/transaksi
+Content-Type: application/json
+
+{
+  "nama_pembeli": "febrian",
+  "alamat_pembeli": "gunung pati",
+  "no_hp_pembeli": "0211-0304-1086",
+  "total_bayar": 20000,
+  "tgl_bayar": "2023-01-01"
+}
+###2023-01-01T00:00:00.000Z
+### Mengubah data transaksi berdasarkan id
+ PUT http://localhost:3000/api/transaksi/1
+Content-Type: application/json
+
+{
+  "nama_pembeli": "depin",
+  "alamat_pembeli": "semarang",
+  "no_hp_pembeli": "0211-0304-1036",
+  "total_bayar": 40000,
+  "tgl_bayar": "2023-01-01"
+}
+### Menghapus data transaksi berdasarkan id
+ DELETE http://localhost:3000/api/transaksi/1

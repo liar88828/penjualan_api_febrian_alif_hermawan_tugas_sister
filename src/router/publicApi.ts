@@ -1,20 +1,27 @@
-import { produk } from '../controller/produk';
-import { penjualan } from '../controller/penjualan';
+// @ts-ignore
 import express from 'express';
+import {barang} from "../controller/barang";
+import {transaksi} from "../controller/transaksi";
+import {toko} from "../controller/toko";
 
 const router = express.Router()
 
-// produk api
-router.get( '/produk', produk.find )
-router.get( '/produk/:id', produk.findId )
-router.post( '/produk', produk.create )
-router.put( '/produk/:id', produk.update )
-router.delete( '/produk/:id', produk.delete )
-// penjualan api
-router.get( '/penjualan', penjualan.find )
-router.get( '/penjualan/:id', penjualan.findId )
-router.post( '/penjualan', penjualan.create )
-router.put( '/penjualan/:id', penjualan.update )
-router.delete( '/penjualan/:id', penjualan.delete )
-
-export default router 
+// barang api
+router.get( '/barang', barang.find )
+router.get( '/barang/:id', barang.findId )
+router.post( '/barang', barang.create )
+router.put( '/barang/:id', barang.update )
+router.delete( '/barang/:id', barang.delete )
+// transaksi api
+router.get( '/transaksi', transaksi.find )
+router.get( '/transaksi/:id', transaksi.findId )
+router.post( '/transaksi', transaksi.create )
+router.put( '/transaksi/:id', transaksi.update )
+router.delete( '/transaksi/:id', transaksi.delete )
+// toko api
+router.get( '/toko', toko.find )
+router.get( '/toko/:id', toko.findId )
+router.post( '/toko', toko.create )
+router.put( '/toko/:id', toko.update )
+router.delete( '/toko/:id', toko.delete )
+export default router

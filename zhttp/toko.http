@@ -1,0 +1,26 @@
+### Mengambil data semua data toko
+GET http://localhost:3000/api/toko
+
+### Mengambil data toko berdasarkan id
+GET http://localhost:3000/api/toko/1
+
+### Membuat data toko
+POST http://localhost:3000/api/toko
+Content-Type: application/json
+
+{
+  "nama_toko": "unwahas",
+  "tahun": "2023"
+}
+
+### Mengubah data toko berdasarkan id
+ PUT http://localhost:3000/api/toko/1
+Content-Type: application/json
+
+{
+  "nama_toko": "unwahas",
+  "tahun": "2024"
+}
+
+### Menghapus data toko berdasarkan id
+ DELETE http://localhost:3000/api/toko/1
